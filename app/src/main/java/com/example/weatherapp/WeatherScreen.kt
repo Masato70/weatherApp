@@ -3,22 +3,30 @@ package com.example.weatherapp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
+
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.weatherapp.ui.theme.WeatherAppTheme
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.URL
 
 
 @Composable
-fun weatherDisplay() {
+fun WeatherDisplay() {
 
     Column(
         modifier = Modifier
@@ -38,8 +46,8 @@ fun weatherDisplay() {
 
         ) {
 
-            Row() {
-                Column() {
+            Row {
+                Column {
                     Text(
                         text = "日にち",
                         color = MaterialTheme.colors.surface,
@@ -80,10 +88,63 @@ fun weatherDisplay() {
             }
         }
 
-    }
+        Spacer(modifier = Modifier.height(30.dp))
 
-    Row() {
-        
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+        ) {
+            Row(
+                Modifier.padding(bottom = 30.dp)
+            ) {
+                Text(text = "日にち", Modifier.weight(1f), fontSize = 20.sp, fontWeight = FontWeight.Bold )
+                Image(painter = painterResource(R.drawable.hitu), contentDescription = "weather pictures ", Modifier.weight(1f))
+                Text(text = "18/11", Modifier.weight(1f), fontSize = 20.sp)
+                Text(text = "30%", Modifier.weight(1f), fontSize = 20.sp)
+            }
+
+
+            Row(
+                Modifier.padding(bottom = 30.dp)
+            ) {
+                Text(text = "日にち", Modifier.weight(1f), fontSize = 20.sp, fontWeight = FontWeight.Bold )
+                Image(painter = painterResource(R.drawable.hitu), contentDescription = "weather pictures ", Modifier.weight(1f))
+                Text(text = "18/11", Modifier.weight(1f), fontSize = 20.sp)
+                Text(text = "30%", Modifier.weight(1f), fontSize = 20.sp)
+            }
+
+
+
+            Row(
+                Modifier.padding(bottom = 30.dp)
+            ) {
+                Text(text = "日にち", Modifier.weight(1f), fontSize = 20.sp,fontWeight = FontWeight.Bold  )
+                Image(painter = painterResource(R.drawable.hitu), contentDescription = "weather pictures ", Modifier.weight(1f))
+                Text(text = "18/11", Modifier.weight(1f), fontSize = 20.sp)
+                Text(text = "30%", Modifier.weight(1f), fontSize = 20.sp)
+            }
+
+
+
+            Row(
+                Modifier.padding(bottom = 30.dp)
+            ) {
+                Text(text = "日にち", Modifier.weight(1f), fontSize = 20.sp, fontWeight = FontWeight.Bold )
+                Image(painter = painterResource(R.drawable.hitu), contentDescription = "weather pictures ", Modifier.weight(1f))
+                Text(text = "18/11", Modifier.weight(1f), fontSize = 20.sp)
+                Text(text = "30%", Modifier.weight(1f), fontSize = 20.sp)
+            }
+
+
+        }
     }
-    
+}
+
+
+@Preview
+@Composable
+fun weatherDisplayPreview() {
+    WeatherAppTheme {
+        WeatherDisplay()
+    }
 }
