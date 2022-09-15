@@ -16,8 +16,6 @@ import kotlin.collections.ArrayList
 
 
      fun weatherTask() {
-         Log.d(TAG, "通過")
-
 
         val apiKey = ""
         val apiUrl =
