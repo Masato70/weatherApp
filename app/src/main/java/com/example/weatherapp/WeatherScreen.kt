@@ -17,96 +17,63 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.ui.theme.WeatherAppTheme
+import com.example.weatherapp.*
 
 
 @Composable
-fun WeatherDisplay() {
+ fun WeatherDisplay() {
 
-    Column(
-        modifier = Modifier
-            .padding(all = 8.dp)
-            .background(color = MaterialTheme.colors.background)
-    ) {
 
-        Box(
-            modifier = Modifier
-                .background(
-                    color = MaterialTheme.colors.primaryVariant,
-                    shape = RoundedCornerShape(15)
-                )
+    Column(modifier = Modifier.padding(all = 8.dp).background(color = MaterialTheme.colors.background)) {
+
+        Box(modifier = Modifier.background(color = MaterialTheme.colors.primaryVariant, shape = RoundedCornerShape(15))
                 .padding(start = 20.dp, top = 10.dp, end = 20.dp, bottom = 20.dp)
                 .fillMaxWidth()
                 .requiredHeight(150.dp)
-
         ) {
 
             Row {
                 Column {
-                    Text(
-                        text = "日にち",
-                        color = MaterialTheme.colors.surface,
-                        fontSize = 30.sp
-                    )
+                    Text(text = "", color = MaterialTheme.colors.surface, fontSize = 30.sp)
 
                     Spacer(modifier = Modifier.height(4.dp))
 
-                    Image(
-                        painter = painterResource(R.drawable.hitu),
-                        contentDescription = "weather pictures ",
-                        modifier = Modifier.size(120.dp)
-                    )
+                    Image(painter = painterResource(R.drawable.hitu), contentDescription = "weather pictures ", modifier = Modifier.size(120.dp))
                 }
 
                 Spacer(modifier = Modifier.width(50.dp))
 
 
-                Column(
+                Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+                    Text(text = "20/11", fontSize = 50.sp, color = MaterialTheme.colors.surface)
 
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center
-
-                ) {
-                    Text(
-                        text = "20/11",
-                        fontSize = 50.sp,
-                        color = MaterialTheme.colors.surface
-                    )
-
-                    Text(
-                        text = "50%",
-                        fontSize = 50.sp,
-                        color = MaterialTheme.colors.surface
-                    )
-
+                    Text(text = "50%", fontSize = 50.sp, color = MaterialTheme.colors.surface)
                 }
             }
         }
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-        ) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
-            Row(
-                Modifier.padding(bottom = 30.dp)
-            ) {
-                Text(
-                    text = getJson(),
-                    Modifier.weight(1f),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Image(
-                    painter = painterResource(R.drawable.hitu),
-                    contentDescription = "weather pictures ",
-                    Modifier.weight(1f)
-                )
-                Text(text = "18/11", Modifier.weight(1f), fontSize = 20.sp)
-                Text(text = "30%", Modifier.weight(1f), fontSize = 20.sp)
+
+            for (i in 1..7) {
+                Row(Modifier.padding(bottom = 30.dp)) {
+                    Text(
+                        text = "",
+                        Modifier.weight(1f),
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Image(
+                        painter = painterResource(R.drawable.hitu),
+                        contentDescription = "weather pictures ",
+                        Modifier.weight(1f)
+                    )
+                    Text(text = "18/11", Modifier.weight(1f), fontSize = 20.sp)
+                    Text(text = "30%", Modifier.weight(1f), fontSize = 20.sp)
+                }
             }
-
         }
     }
 }
