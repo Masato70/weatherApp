@@ -13,15 +13,12 @@ import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weatherapp.ui.theme.WeatherAppTheme
-import com.example.weatherapp.*
 
 
 @Composable
- fun WeatherDisplay() {
+ fun WeatherDisplay(arrayList: ArrayList<String>) {
 
 
     Column(modifier = Modifier.padding(all = 8.dp).background(color = MaterialTheme.colors.background)) {
@@ -34,7 +31,7 @@ import com.example.weatherapp.*
 
             Row {
                 Column {
-                    Text(text = "", color = MaterialTheme.colors.surface, fontSize = 30.sp)
+                    Text(text = arrayList[0], color = MaterialTheme.colors.surface, fontSize = 30.sp)
 
                     Spacer(modifier = Modifier.height(4.dp))
 
@@ -45,9 +42,9 @@ import com.example.weatherapp.*
 
 
                 Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-                    Text(text = "20/11", fontSize = 50.sp, color = MaterialTheme.colors.surface)
+                    Text(text = "11/11", fontSize = 50.sp, color = MaterialTheme.colors.surface)
 
-                    Text(text = "50%", fontSize = 50.sp, color = MaterialTheme.colors.surface)
+                    Text(text = "11%", fontSize = 50.sp, color = MaterialTheme.colors.surface)
                 }
             }
         }
@@ -55,6 +52,7 @@ import com.example.weatherapp.*
         Spacer(modifier = Modifier.height(30.dp))
 
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+
 
 
             for (i in 1..7) {
@@ -79,12 +77,14 @@ import com.example.weatherapp.*
 }
 
 
-@Preview
-@Composable
-fun weatherDisplayPreview() {
-    WeatherAppTheme {
-        WeatherDisplay()
-    }
-}
 
+//
+//@Preview
+//@Composable
+//fun weatherDisplayPreview() {
+//    WeatherAppTheme {
+//        WeatherDisplay()
+//    }
+//}
+//
 
