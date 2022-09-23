@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.sp
 
 
                 Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-                    Text(text = "11/11", fontSize = 50.sp, color = MaterialTheme.colors.surface)
+                    Text(text = arrayList[0], fontSize = 50.sp, color = MaterialTheme.colors.surface)
 
                     Text(text = "11%", fontSize = 50.sp, color = MaterialTheme.colors.surface)
                 }

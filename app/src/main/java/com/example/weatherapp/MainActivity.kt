@@ -13,8 +13,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             var list = weatherTask()
-            Log.d(TAG, list.toString())
-            Log.d(TAG, "通過5")
             WeatherAppTheme {
                 if (list != null) {
                     WeatherDisplay(list)

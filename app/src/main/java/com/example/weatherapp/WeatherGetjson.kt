@@ -42,7 +42,9 @@ fun weatherBackgroundTast(apiUrl: String): String {
 
     try {
         val url = URL(apiUrl)
+        Log.d(TAG, "通過2.1")
         val br = BufferedReader(InputStreamReader(url.openStream()))
+        Log.d(TAG, "通過2.2")
         weatherdata = br.readText()
 
     } catch (e: IOException) {
@@ -94,4 +96,3 @@ fun weatherJsonTask(result: String): ArrayList<String> {
     }
     return list
 }
-
