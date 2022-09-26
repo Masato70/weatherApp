@@ -2,6 +2,8 @@ package com.example.weatherapp
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -15,24 +17,26 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-fun weatherTask(): ArrayList<String>? {
+fun weatherTask(activity:MainActivity) {
 
-    var lista: ArrayList<String>? = null
+    var listresponce: ArrayList<String>? = null
 
     val apiKey = ""
     val apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=35.68&lon=139.70&appid=${apiKey}&exclude=current,minutely,hourly,alerts"
 
+
     GlobalScope.launch {
-        withContext(Dispatchers.IO) {
-            val result = weatherBackgroundTast(apiUrl)
-            lista = weatherJsonTask(result)
+            withContext(Dispatchers.IO) {
+                val result = weatherBackgroundTast(apiUrl)
+                listresponce = weatherJsonTask(result)
+                activity.Hoge(listresponce!!)
+            }
         }
-    }
-
-
-    Log.d(TAG, lista.toString())
-    return lista
+//    Log.d(TAG, lista.toString())
+//    Thread.sleep(10000)
+//    return lista
 }
+
 
 
 fun weatherBackgroundTast(apiUrl: String): String {
