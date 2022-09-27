@@ -18,9 +18,9 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Hoge(listresponce: ArrayList<String>) {
+    fun Hoge(response: ArrayList<String>) {
         WeatherAppTheme {
-            WeatherDisplay(listresponce)
+            WeatherDisplay(response)
         }
     }
 
