@@ -18,7 +18,8 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Hoge(response: ArrayList<String>) {
+    fun Hoge(response: ArrayList<ArrayList<String>>) {
+        Log.d(TAG, response.toString())
         WeatherAppTheme {
             WeatherDisplay(response)
         }

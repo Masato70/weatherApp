@@ -19,15 +19,20 @@ import kotlin.collections.ArrayList
 @Composable
 fun weatherTask(activity:MainActivity) {
     val apiKey = ""
-    val apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=35.68&lon=139.70&appid=${apiKey}&exclude=current,minutely,hourly,alerts"
+    val apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=35.68&lon=139.70&appid=${apiKey}&exclude=current,minutely,hourly,alerts&units=metric"
 
-    var response: ArrayList<String>? by remember {
+    var response: ArrayList<ArrayList<String>>? by remember {
         mutableStateOf(null)
     }
+    val coroutineScope = rememberCoroutineScope()
 
     SideEffect {
-        val result = weatherBackgroundTast(apiUrl)
-        response = weatherJsonTask(result)
+        coroutineScope.launch {
+            withContext(Dispatchers.IO) {
+                val result = weatherBackgroundTast(apiUrl)
+                response = weatherJsonTask(result)
+            }
+        }
     }
 
     if (response == null) {
@@ -67,12 +72,12 @@ fun unixTimeChange(unixTime: String): String {
 }
 
 
-fun weatherJsonTask(result: String): ArrayList<String> {
+fun weatherJsonTask(result: String): ArrayList<ArrayList<String>> {
     Log.d(TAG, "通過3")
 
 
     //取得した情報をしまう
-    var list: ArrayList<String> = arrayListOf()
+    var list: ArrayList<ArrayList<String>> = arrayListOf()
 
 
     val json = JSONObject(result)
@@ -94,7 +99,7 @@ fun weatherJsonTask(result: String): ArrayList<String> {
 
         date = unixTimeChange(date.toString())
         var icon = "https://openweathermap.org/img/wn/${iconnumber}@2x.png"
-        list += (arrayListOf(date, icon, pop, min, max).toString())
+        list += arrayListOf(date.toString(), icon.toString(), pop.toString(), min.toString(), max.toString())
     }
     return list
 }
