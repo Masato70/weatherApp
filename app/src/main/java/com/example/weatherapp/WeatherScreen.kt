@@ -134,12 +134,3 @@ fun WeatherDisplay(list: ArrayList<ArrayList<String>>) {
         }
     }
 }
-
-
-//@Preview
-//@Composable
-//fun weatherDisplayPreview() {
-//    WeatherAppTheme {
-//        WeatherDisplay(arrayListOf("aa"))
-//    }
-//}

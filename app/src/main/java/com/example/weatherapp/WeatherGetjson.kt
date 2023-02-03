@@ -1,8 +1,17 @@
 package com.example.weatherapp
 
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.pm.PackageManager
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -17,8 +26,9 @@ import kotlin.collections.ArrayList
 
 
 @Composable
-fun weatherTask(activity:MainActivity) {
-    val apiKey = ""
+fun weatherTask(activity: MainActivity) {
+    
+    val apiKey = "c1f5f6237618c9e1cd40a4689f1876de"
     val apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=35.68&lon=139.70&appid=${apiKey}&exclude=current,minutely,hourly,alerts&units=metric"
 
     var response: ArrayList<ArrayList<String>>? by remember {
@@ -40,6 +50,7 @@ fun weatherTask(activity:MainActivity) {
     }
     activity.Hoge(response!!)
 }
+
 
 
 fun weatherBackgroundTast(apiUrl: String): String {
@@ -99,7 +110,7 @@ fun weatherJsonTask(result: String): ArrayList<ArrayList<String>> {
 
         date = unixTimeChange(date.toString())
         var icon = "https://openweathermap.org/img/wn/${iconnumber}@2x.png"
-        list += arrayListOf(date.toString(), icon.toString(), pop.toString(), min.toString(), max.toString())
+        list += arrayListOf(date.toString(), icon, pop.toString(), min.toString(), max.toString())
     }
     return list
 }
